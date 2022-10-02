@@ -17,11 +17,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey,
           foregroundColor: Colors.black,
         ),
-        primarySwatch: Colors.deepPurple,
-      ),
+      ),     
       home: const MainPage(),
     );
   }
@@ -45,22 +44,20 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        /*appBar: AppBar(
+        appBar: AppBar(
           title: const Text("Hello World!"),
           actions: [
             IconButton(
-                onPressed: () {
-                  debugPrint("settingsknapp");
-                },
+                onPressed: _settings,
                 icon: const Icon(Icons.settings)),
           ],
-        ),*/
+        ),
         bottomNavigationBar: NavigationBar(
           destinations: const [
-            NavigationDestination(icon: Icon(Icons.arrow_left), label: 'Left'),
+            NavigationDestination(icon: Icon(Icons.favorite), label: 'Liked'),
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(
-                icon: Icon(Icons.arrow_right), label: 'Right'),
+                icon: Icon(Icons.heart_broken), label: 'Disliked'),
           ],
           onDestinationSelected: (int index) {
             setState(() {
@@ -70,5 +67,20 @@ class _MainPageState extends State<MainPage> {
           selectedIndex: currentPage,
         ),
         body: pages[currentPage]);
+  }
+
+  void _settings() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Settings'),
+            ),
+            body: ListView(),
+          );
+        },
+      ),
+    );
   }
 }

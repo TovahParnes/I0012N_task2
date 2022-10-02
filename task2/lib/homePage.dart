@@ -8,14 +8,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.grey,
-          foregroundColor: Colors.black,
-        ),
-      ),     
-      debugShowCheckedModeBanner: false,
       home: RandomWords(),
     );
   }
@@ -35,7 +27,7 @@ class _RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(  
+      /*appBar: AppBar(  
         title: const Text('Startup Name Generator'),
         actions: [
           IconButton(
@@ -44,7 +36,7 @@ class _RandomWordsState extends State<RandomWords> {
             tooltip: 'Saved Suggestions',
           ),
         ],
-      ),               
+      ), */            
       body: ListView.builder(  
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
