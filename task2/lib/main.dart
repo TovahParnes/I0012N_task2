@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: const Text("Hello World!"),
           actions: [
             IconButton(
@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
                 },
                 icon: const Icon(Icons.settings)),
           ],
-        ),
+        ),*/
         bottomNavigationBar: NavigationBar(
           destinations: const [
             NavigationDestination(icon: Icon(Icons.arrow_left), label: 'Left'),
