@@ -88,3 +88,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+  - assets/wallpaper-1.jpeg
+  - assets/wallpaper-2.jpeg
+  - assets/wallpaper-3.jpeg
+  - assets/wallpaper-4.jpeg
+  - assets/wallpaper-5.jpeg
+  - assets/wallpaper-6.jpeg
+  - assets/wallpaper-7.jpeg

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.grey,
           foregroundColor: Colors.black,
         ),
-      ),     
+      ),
       home: const MainPage(),
     );
   }
@@ -36,7 +36,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int currentPage = 0;
   List<Widget> pages = [
-    const LeftPage(),
+    LeftPage(),
     const HomePage(),
     const RightPage(),
   ];
@@ -47,9 +47,7 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           title: const Text("Hello World!"),
           actions: [
-            IconButton(
-                onPressed: _settings,
-                icon: const Icon(Icons.settings)),
+            IconButton(onPressed: _settings, icon: const Icon(Icons.settings)),
           ],
         ),
         bottomNavigationBar: NavigationBar(
