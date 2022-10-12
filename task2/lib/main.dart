@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'homePage.dart';
-import 'leftPage.dart';
+import 'images.dart';
 import 'rightPage.dart';
 
 void main() {
@@ -52,10 +52,9 @@ class _MainPageState extends State<MainPage> {
         ),
         bottomNavigationBar: NavigationBar(
           destinations: const [
+            NavigationDestination(icon: Icon(Icons.image), label: 'Images'),
+            NavigationDestination(icon: Icon(Icons.list), label: 'Names'),
             NavigationDestination(icon: Icon(Icons.favorite), label: 'Liked'),
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(
-                icon: Icon(Icons.heart_broken), label: 'Disliked'),
           ],
           onDestinationSelected: (int index) {
             setState(() {
