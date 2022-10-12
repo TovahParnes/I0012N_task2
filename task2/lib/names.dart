@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'main.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,21 +22,11 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
-  final _saved = <WordPair>{};
+  //final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(  
-        title: const Text('Startup Name Generator'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list),
-            onPressed: _pushSaved,
-            tooltip: 'Saved Suggestions',
-          ),
-        ],
-      ), */
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
@@ -45,7 +36,7 @@ class _RandomWordsState extends State<RandomWords> {
           if (index >= _suggestions.length) {
             _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           }
-          final alreadySaved = _saved.contains(_suggestions[index]);
+          final alreadySaved = SavedNames.saved.contains(_suggestions[index]);
 
           return ListTile(
               tileColor: Colors.grey,

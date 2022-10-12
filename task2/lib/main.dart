@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'names.dart';
 import 'images.dart';
 import 'liked.dart';
+import 'package:english_words/english_words.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  static const String title = "testnasm";
+  final SavedNames _savedNames = SavedNames();
 
   // This widget is the root of your application.
   @override
@@ -21,23 +24,31 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      home: const MainPage(),
+      home: MainPage(_savedNames),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  MainPage(SavedNames savedNames, {super.key});
+
+  late SavedNames _savedNames;
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState(_savedNames);
 }
 
 class _MainPageState extends State<MainPage> {
+  late SavedNames _savedNames;
+
+  _MainPageState(SavedNames savedNames) {
+    _savedNames = savedNames;
+  }
+
   int currentPage = 1;
   List<Widget> pages = [
     LeftPage(),
-    const HomePage(),
+    HomePage(_savedNames),
     const Liked(),
   ];
 
@@ -45,7 +56,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Hello World!"),
+          title: const Text("Name Generator"),
           actions: [
             IconButton(onPressed: _settings, icon: const Icon(Icons.settings)),
           ],
@@ -79,5 +90,17 @@ class _MainPageState extends State<MainPage> {
         },
       ),
     );
+  }
+}
+
+class SavedNames {
+  final _saved = <WordPair>{};
+
+  get saved {
+    return _saved;
+  }
+
+  saveWordPair(WordPair wordPair) {
+    _saved.add(wordPair);
   }
 }
