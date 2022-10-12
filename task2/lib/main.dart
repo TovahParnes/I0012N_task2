@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart';
+import 'names.dart';
 import 'images.dart';
-import 'rightPage.dart';
+import 'liked.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,11 +34,11 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentPage = 0;
+  int currentPage = 1;
   List<Widget> pages = [
     LeftPage(),
     const HomePage(),
-    const RightPage(),
+    const Liked(),
   ];
 
   @override

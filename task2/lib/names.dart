@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'homePage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: RandomWords(),
+    return const Scaffold(
+      body: RandomWords(),
     );
   }
 }
@@ -36,8 +35,8 @@ class _RandomWordsState extends State<RandomWords> {
             tooltip: 'Saved Suggestions',
           ),
         ],
-      ), */            
-      body: ListView.builder(  
+      ), */
+      body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
           if (i.isOdd) return const Divider(); /*2*/
@@ -49,31 +48,30 @@ class _RandomWordsState extends State<RandomWords> {
           final alreadySaved = _saved.contains(_suggestions[index]);
 
           return ListTile(
-            tileColor: Colors.grey,
-            title: Text(
-              _suggestions[index].asPascalCase,
-              style: _biggerFont,
-            ),
-            trailing: Icon(    
-              alreadySaved ? Icons.favorite : Icons.favorite_border,
-              color: alreadySaved ? Colors.red : null,
-              semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
-            ),
-            onTap: () {          // NEW from here ...
-              setState(() {
-                if (alreadySaved) {
-                  _saved.remove(_suggestions[index]);
-                } else {
-                  _saved.add(_suggestions[index]);
-                }
-              }); 
-            }
-          );                 
+              tileColor: Colors.grey,
+              title: Text(
+                _suggestions[index].asPascalCase,
+                style: _biggerFont,
+              ),
+              trailing: Icon(
+                alreadySaved ? Icons.favorite : Icons.favorite_border,
+                color: alreadySaved ? Colors.red : null,
+                semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+              ),
+              onTap: () {
+                // NEW from here ...
+                setState(() {
+                  if (alreadySaved) {
+                    _saved.remove(_suggestions[index]);
+                  } else {
+                    _saved.add(_suggestions[index]);
+                  }
+                });
+              });
         },
       ),
     );
   }
-
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -107,7 +105,3 @@ class _RandomWordsState extends State<RandomWords> {
     );
   }
 }
-
-
-
-
