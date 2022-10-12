@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart';
 
 class LeftPage extends StatelessWidget {
   //const LeftPage({Key? key}) : super(key: key);
@@ -12,7 +11,15 @@ class LeftPage extends StatelessWidget {
     "assets/wallpaper-4.jpeg",
     "assets/wallpaper-5.jpeg",
     "assets/wallpaper-6.jpeg",
-    "assets/wallpaper-7.jpeg",
+  ];
+
+  final List<String> imageTexts = [
+    "A beautiful flower",
+    "Dew on a leaf",
+    "Painted clouds",
+    "Green music",
+    "Teal and orange pattern",
+    "Aurora borealis",
   ];
 
   @override
@@ -20,19 +27,19 @@ class LeftPage extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: SizedBox.fromSize(
-        size: Size.fromHeight(550.0),
+        size: const Size.fromHeight(550.0),
         child: PageView.builder(
           controller: PageController(viewportFraction: 0.8),
           itemCount: images.length,
           itemBuilder: (BuildContext context, int index) {
-            return new Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16.0,
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10.0,
                 horizontal: 8.0,
               ),
               child: Material(
                 elevation: 5.0,
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(5.0),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -40,20 +47,26 @@ class LeftPage extends StatelessWidget {
                       images[index],
                       fit: BoxFit.cover,
                     ),
-                    /*
                     DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: FractionalOffset.bottomCenter,
-                          end: FractionalOffset.topCenter,
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.center,
                           colors: [
-                            Color(0x00000000).withOpacity(0.9),
-                            Color(0xff000000).withOpacity(0.01),
+                            Color(0x00000000).withOpacity(0.7),
+                            Color(0xff000000).withOpacity(0.001),
                           ],
                         ),
                       ),
-                    )
-                    */
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(bottom: 485),
+                      child: Text(
+                        imageTexts[index],
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),
