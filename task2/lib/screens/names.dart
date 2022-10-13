@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../providers/savedNamesProvider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class NamePage extends StatelessWidget {
+  const NamePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

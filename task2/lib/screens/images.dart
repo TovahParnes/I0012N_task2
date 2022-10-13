@@ -1,13 +1,12 @@
-import 'dart:js';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/savedNamesProvider.dart';
 
-class LeftPage extends StatelessWidget {
+class ImagePage extends StatelessWidget {
   //const LeftPage({Key? key}) : super(key: key);
-  LeftPage({Key? key}) : super(key: key);
+  ImagePage({Key? key}) : super(key: key);
 
   final List<String> images = [
     "assets/wallpaper-1.jpeg",
@@ -20,7 +19,7 @@ class LeftPage extends StatelessWidget {
 
   final List<String> imageTexts = [];
 
-  late Random random;
+  //late Random random;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +33,7 @@ class LeftPage extends StatelessWidget {
           itemCount: images.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10.0,
-                horizontal: 8.0,
-              ),
+              padding: const EdgeInsets.fromLTRB(8, 10, 8, 50),
               child: Material(
                 elevation: 5.0,
                 borderRadius: BorderRadius.circular(5.0),
@@ -45,7 +41,7 @@ class LeftPage extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Image.asset(
-                      images[random.nextInt(images.length)],
+                      images[Random().nextInt(images.length)],
                       fit: BoxFit.cover,
                     ),
                     DecoratedBox(
@@ -54,18 +50,19 @@ class LeftPage extends StatelessWidget {
                           begin: FractionalOffset.topCenter,
                           end: FractionalOffset.center,
                           colors: [
-                            Color(0x00000000).withOpacity(0.7),
-                            Color(0xff000000).withOpacity(0.001),
+                            const Color(0x00000000).withOpacity(0.7),
+                            const Color(0xff000000).withOpacity(0.001),
                           ],
                         ),
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(bottom: 485),
+                      padding: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.only(bottom: 405),
                       child: Text(
-                        imageTexts[random.nextInt(imageTexts.length)],
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        imageTexts[Random().nextInt(imageTexts.length)],
+                        style:
+                            const TextStyle(fontSize: 50, color: Colors.white),
                       ),
                     ),
                   ],

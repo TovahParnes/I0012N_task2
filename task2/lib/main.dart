@@ -42,16 +42,16 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentPage = 1;
+  int currentPage = 0;
   late List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
     pages = [
-      LeftPage(),
-      const HomePage(),
-      const Liked(),
+      const NamePage(),
+      ImagePage(),
+      const SavedPage(),
     ];
   }
 
@@ -66,9 +66,12 @@ class _MainPageState extends State<MainPage> {
         ),
         bottomNavigationBar: NavigationBar(
           destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.list),
+              label: 'Names',
+            ),
             NavigationDestination(icon: Icon(Icons.image), label: 'Images'),
-            NavigationDestination(icon: Icon(Icons.list), label: 'Names'),
-            NavigationDestination(icon: Icon(Icons.favorite), label: 'Liked'),
+            NavigationDestination(icon: Icon(Icons.favorite), label: 'Saved'),
           ],
           onDestinationSelected: (int index) {
             setState(() {

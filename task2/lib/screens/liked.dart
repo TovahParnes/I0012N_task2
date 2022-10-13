@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-class Liked extends StatelessWidget {
-  const Liked({Key? key}) : super(key: key);
+class SavedPage extends StatelessWidget {
+  const SavedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
