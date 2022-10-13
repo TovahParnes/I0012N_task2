@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import '../main.dart';
 
 class Liked extends StatelessWidget {
   const Liked({Key? key}) : super(key: key);
@@ -13,9 +13,7 @@ class Liked extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           margin: const EdgeInsets.fromLTRB(45, 150, 100, 30),
           transform: Matrix4.rotationZ(-0.2),
-          child: Text(
-            MyApp.title,
-          ),
+          child: const Text("hello"),
         ),
       ],
     );

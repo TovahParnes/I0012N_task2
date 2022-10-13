@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'names.dart';
-import 'images.dart';
-import 'liked.dart';
+import 'screens/names.dart';
+import 'screens/images.dart';
+import 'screens/liked.dart';
 import 'package:english_words/english_words.dart';
+import 'package:provider/provider.dart';
+import 'providers/savedNamesProvider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => SavedNames2(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  static const String title = "testnasm";
-  final SavedNames _savedNames = SavedNames();
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -24,33 +29,31 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      home: MainPage(_savedNames),
+      home: const MainPage(),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
-  MainPage(SavedNames savedNames, {super.key});
-
-  late SavedNames _savedNames;
+  const MainPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState(_savedNames);
+  State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  late SavedNames _savedNames;
-
-  _MainPageState(SavedNames savedNames) {
-    _savedNames = savedNames;
-  }
-
   int currentPage = 1;
-  List<Widget> pages = [
-    LeftPage(),
-    HomePage(_savedNames),
-    const Liked(),
-  ];
+  late List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      LeftPage(),
+      const HomePage(),
+      const Liked(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,15 @@ class SavedNames {
     return _saved;
   }
 
-  saveWordPair(WordPair wordPair) {
+  void add(WordPair wordPair) {
     _saved.add(wordPair);
+  }
+
+  bool contains(WordPair wordPair) {
+    return _saved.contains(wordPair);
+  }
+
+  void remove(WordPair wordPair) {
+    _saved.remove(wordPair);
   }
 }

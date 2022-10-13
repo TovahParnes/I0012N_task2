@@ -1,4 +1,9 @@
+import 'dart:js';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/savedNamesProvider.dart';
 
 class LeftPage extends StatelessWidget {
   //const LeftPage({Key? key}) : super(key: key);
@@ -13,17 +18,13 @@ class LeftPage extends StatelessWidget {
     "assets/wallpaper-6.jpeg",
   ];
 
-  final List<String> imageTexts = [
-    "A beautiful flower",
-    "Dew on a leaf",
-    "Painted clouds",
-    "Green music",
-    "Teal and orange pattern",
-    "Aurora borealis",
-  ];
+  final List<String> imageTexts = [];
+
+  late Random random;
 
   @override
   Widget build(BuildContext context) {
+    imageTexts.addAll(context.read<SavedNames2>().saved);
     return Scaffold(
       body: Center(
           child: SizedBox.fromSize(
@@ -44,7 +45,7 @@ class LeftPage extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Image.asset(
-                      images[index],
+                      images[random.nextInt(images.length)],
                       fit: BoxFit.cover,
                     ),
                     DecoratedBox(
@@ -63,7 +64,7 @@ class LeftPage extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.only(bottom: 485),
                       child: Text(
-                        imageTexts[index],
+                        imageTexts[random.nextInt(imageTexts.length)],
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),

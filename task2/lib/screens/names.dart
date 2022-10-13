@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'main.dart';
+import 'package:provider/provider.dart';
+import '../main.dart';
+import '../providers/savedNamesProvider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,27 +23,32 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
+  final List<String> _suggestions = [];
   //final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18);
   @override
   Widget build(BuildContext context) {
+    _suggestions.addAll(context.read<SavedNames2>().saved);
     return Scaffold(
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return const Divider(); /*2*/
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
 
-          final index = i ~/ 2; /*3*/
+          final index = i ~/ 2;
           if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+            _suggestions.addAll(generateWordPairs()
+                .take(10)
+                .toList()
+                .map((wordPair) => wordPair.asPascalCase));
           }
-          final alreadySaved = SavedNames.saved.contains(_suggestions[index]);
-
+          final alreadySaved = context
+              .read<SavedNames2>()
+              .checkAlreadySaved(_suggestions[index]);
           return ListTile(
               tileColor: Colors.grey,
               title: Text(
-                _suggestions[index].asPascalCase,
+                _suggestions[index],
                 style: _biggerFont,
               ),
               trailing: Icon(
@@ -50,47 +57,18 @@ class _RandomWordsState extends State<RandomWords> {
                 semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
               ),
               onTap: () {
-                // NEW from here ...
                 setState(() {
                   if (alreadySaved) {
-                    _saved.remove(_suggestions[index]);
+                    context
+                        .read<SavedNames2>()
+                        .removeSavedName(_suggestions[index]);
                   } else {
-                    _saved.add(_suggestions[index]);
+                    context
+                        .read<SavedNames2>()
+                        .addSavedName(_suggestions[index]);
                   }
                 });
               });
-        },
-      ),
-    );
-  }
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return ListTile(
-                title: Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = tiles.isNotEmpty
-              ? ListTile.divideTiles(
-                  context: context,
-                  tiles: tiles,
-                ).toList()
-              : <Widget>[];
-
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Saved Suggestions'),
-            ),
-            body: ListView(children: divided),
-          );
         },
       ),
     );
