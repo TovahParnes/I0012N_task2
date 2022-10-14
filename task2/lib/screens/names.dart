@@ -24,11 +24,10 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final List<String> _suggestions = [];
-  //final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18);
   @override
   Widget build(BuildContext context) {
-    _suggestions.addAll(context.read<SavedNames2>().saved);
+    _suggestions.addAll(context.read<SavedNames>().saved);
     return Scaffold(
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
@@ -42,9 +41,8 @@ class _RandomWordsState extends State<RandomWords> {
                 .toList()
                 .map((wordPair) => wordPair.asPascalCase));
           }
-          final alreadySaved = context
-              .read<SavedNames2>()
-              .checkAlreadySaved(_suggestions[index]);
+          final alreadySaved =
+              context.read<SavedNames>().checkAlreadySaved(_suggestions[index]);
           return ListTile(
               tileColor: Colors.grey,
               title: Text(
@@ -60,11 +58,11 @@ class _RandomWordsState extends State<RandomWords> {
                 setState(() {
                   if (alreadySaved) {
                     context
-                        .read<SavedNames2>()
+                        .read<SavedNames>()
                         .removeSavedName(_suggestions[index]);
                   } else {
                     context
-                        .read<SavedNames2>()
+                        .read<SavedNames>()
                         .addSavedName(_suggestions[index]);
                   }
                 });

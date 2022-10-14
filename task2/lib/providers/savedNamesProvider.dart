@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SavedNames2 with ChangeNotifier {
+class SavedNames with ChangeNotifier {
   final List<String> _saved = ["testSaved", "testSavedTwo"];
 
   List<String> get saved => _saved;

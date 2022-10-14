@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task2/providers/savedCardProvider.dart';
 import 'screens/names.dart';
 import 'screens/images.dart';
 import 'screens/liked.dart';
@@ -8,8 +9,11 @@ import 'providers/savedNamesProvider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => SavedNames2(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SavedNames()),
+        ChangeNotifierProvider(create: (_) => SavedCards()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -96,25 +100,5 @@ class _MainPageState extends State<MainPage> {
         },
       ),
     );
-  }
-}
-
-class SavedNames {
-  final _saved = <WordPair>{};
-
-  get saved {
-    return _saved;
-  }
-
-  void add(WordPair wordPair) {
-    _saved.add(wordPair);
-  }
-
-  bool contains(WordPair wordPair) {
-    return _saved.contains(wordPair);
-  }
-
-  void remove(WordPair wordPair) {
-    _saved.remove(wordPair);
   }
 }
