@@ -48,60 +48,60 @@ class _CardsState extends State<Cards> {
         size: const Size.fromHeight(550.0),
         child: PageView.builder(
           controller: PageController(viewportFraction: 0.8),
-          itemCount: images.length,
+          //itemCount: images.length,
           itemBuilder: (BuildContext context, int index) {
-            _cards.add([
-              images[Random().nextInt(images.length)],
-              _imageTexts[Random().nextInt(_imageTexts.length)]
-            ]);
+            if (index >= _cards.length) {
+              _cards.add([
+                images[Random().nextInt(images.length)],
+                _imageTexts[Random().nextInt(_imageTexts.length)]
+              ]);
+            }
             bool alreadySaved =
                 context.read<SavedCards>().checkAlreadySaved(_cards[index]);
-            return Card(const Text("hello"),
+
+            return Card(
                 child: Stack(fit: StackFit.expand, children: [
-                  const Material(
-                    elevation: 20.0,
-                    shadowColor: Colors.black,
+              const Material(
+                elevation: 20.0,
+                shadowColor: Colors.black,
+              ),
+              Image.asset(
+                _cards[index][0],
+                fit: BoxFit.cover,
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: FractionalOffset.topCenter,
+                    end: FractionalOffset.center,
+                    colors: [
+                      const Color(0x00000000).withOpacity(0.7),
+                      const Color(0xff000000).withOpacity(0.001),
+                    ],
                   ),
-                  Image.asset(
-                    _cards[index][0],
-                    fit: BoxFit.cover,
+                ),
+              ),
+              ListTile(
+                  title: Text(_cards[index][1],
+                      style:
+                          const TextStyle(fontSize: 40, color: Colors.white)),
+                  trailing: Icon(
+                    alreadySaved ? Icons.favorite : Icons.favorite_border,
+                    color: alreadySaved ? Colors.red : Colors.white,
+                    semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
                   ),
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: FractionalOffset.topCenter,
-                        end: FractionalOffset.center,
-                        colors: [
-                          const Color(0x00000000).withOpacity(0.7),
-                          const Color(0xff000000).withOpacity(0.001),
-                        ],
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                      title: Text(_cards[index][1],
-                          style: const TextStyle(
-                              fontSize: 40, color: Colors.white)),
-                      trailing: Icon(
-                        alreadySaved ? Icons.favorite : Icons.favorite_border,
-                        color: alreadySaved ? Colors.red : Colors.white,
-                        semanticLabel:
-                            alreadySaved ? 'Remove from saved' : 'Save',
-                      ),
-                      onTap: () {
-                        setState(() {
-                          if (alreadySaved) {
-                            context
-                                .read<SavedCards>()
-                                .removeSavedCard(_cards[index]);
-                          } else {
-                            context
-                                .read<SavedCards>()
-                                .addSavedCard(_cards[index]);
-                          }
-                        });
-                      })
-                ]));
+                  onTap: () {
+                    setState(() {
+                      if (alreadySaved) {
+                        context
+                            .read<SavedCards>()
+                            .removeSavedCard(_cards[index]);
+                      } else {
+                        context.read<SavedCards>().addSavedCard(_cards[index]);
+                      }
+                    });
+                  })
+            ]));
           },
         ),
       )),
