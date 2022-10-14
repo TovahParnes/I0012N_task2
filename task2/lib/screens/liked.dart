@@ -42,6 +42,10 @@ class _CardsState extends State<Cards> {
 
             return Card(
                 child: Stack(fit: StackFit.expand, children: [
+              const Material(
+                elevation: 20.0,
+                shadowColor: Colors.black,
+              ),
               Image.asset(
                 _cards[index][0],
                 fit: BoxFit.cover,

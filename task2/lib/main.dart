@@ -63,10 +63,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Name Generator"),
-          actions: [
-            IconButton(onPressed: _settings, icon: const Icon(Icons.settings)),
-          ],
+          title: const Text("Painting Name Generator"),
         ),
         bottomNavigationBar: NavigationBar(
           destinations: const [

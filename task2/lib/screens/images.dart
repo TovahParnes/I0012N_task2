@@ -39,9 +39,9 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    _cards.addAll(context.read<SavedCards>().saved);
+    //_cards.addAll(context.read<SavedCards>().saved);
     _imageTexts.addAll(context.read<SavedNames>().saved);
-    _imageTexts.length == 0 ? _imageTexts.add("NoSavedText") : null;
+    _imageTexts.isEmpty ? _imageTexts.add("") : null;
     return Scaffold(
       body: Center(
           child: SizedBox.fromSize(
@@ -56,49 +56,52 @@ class _CardsState extends State<Cards> {
             ]);
             bool alreadySaved =
                 context.read<SavedCards>().checkAlreadySaved(_cards[index]);
-            return Card(
+            return Card(const Text("hello"),
                 child: Stack(fit: StackFit.expand, children: [
-              const Material(
-                elevation: 20.0,
-                shadowColor: Colors.black,
-              ),
-              Image.asset(
-                _cards[index][0],
-                fit: BoxFit.cover,
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.topCenter,
-                    end: FractionalOffset.center,
-                    colors: [
-                      const Color(0x00000000).withOpacity(0.7),
-                      const Color(0xff000000).withOpacity(0.001),
-                    ],
+                  const Material(
+                    elevation: 20.0,
+                    shadowColor: Colors.black,
                   ),
-                ),
-              ),
-              ListTile(
-                  title: Text(_cards[index][1],
-                      style:
-                          const TextStyle(fontSize: 40, color: Colors.white)),
-                  trailing: Icon(
-                    alreadySaved ? Icons.favorite : Icons.favorite_border,
-                    color: alreadySaved ? Colors.red : Colors.white,
-                    semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+                  Image.asset(
+                    _cards[index][0],
+                    fit: BoxFit.cover,
                   ),
-                  onTap: () {
-                    setState(() {
-                      if (alreadySaved) {
-                        context
-                            .read<SavedCards>()
-                            .removeSavedCard(_cards[index]);
-                      } else {
-                        context.read<SavedCards>().addSavedCard(_cards[index]);
-                      }
-                    });
-                  })
-            ]));
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.topCenter,
+                        end: FractionalOffset.center,
+                        colors: [
+                          const Color(0x00000000).withOpacity(0.7),
+                          const Color(0xff000000).withOpacity(0.001),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                      title: Text(_cards[index][1],
+                          style: const TextStyle(
+                              fontSize: 40, color: Colors.white)),
+                      trailing: Icon(
+                        alreadySaved ? Icons.favorite : Icons.favorite_border,
+                        color: alreadySaved ? Colors.red : Colors.white,
+                        semanticLabel:
+                            alreadySaved ? 'Remove from saved' : 'Save',
+                      ),
+                      onTap: () {
+                        setState(() {
+                          if (alreadySaved) {
+                            context
+                                .read<SavedCards>()
+                                .removeSavedCard(_cards[index]);
+                          } else {
+                            context
+                                .read<SavedCards>()
+                                .addSavedCard(_cards[index]);
+                          }
+                        });
+                      })
+                ]));
           },
         ),
       )),
