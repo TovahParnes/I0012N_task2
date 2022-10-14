@@ -31,6 +31,8 @@ class _CardsState extends State<Cards> {
     "assets/wallpaper-4.jpeg",
     "assets/wallpaper-5.jpeg",
     "assets/wallpaper-6.jpeg",
+    "assets/wallpaper-7.jpeg",
+    "assets/wallpaper-8.jpeg",
   ];
 
   final List<String> _imageTexts = [];
