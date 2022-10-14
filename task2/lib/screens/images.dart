@@ -71,6 +71,7 @@ class _CardsState extends State<Cards> {
                 fit: BoxFit.cover,
               ),
               DecoratedBox(
+                //Shadow behind text: https://blog.placeit.net/can-click-ux-design/
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: FractionalOffset.topCenter,
@@ -92,6 +93,7 @@ class _CardsState extends State<Cards> {
                     semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
                   ),
                   onTap: () {
+                    //https://medium.com/@hagan.rivers/interaction-design-with-cards-tiles-5a6895aa220d
                     setState(() {
                       if (alreadySaved) {
                         context
