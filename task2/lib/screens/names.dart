@@ -24,7 +24,7 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final List<String> _suggestions = [];
-  final _biggerFont = const TextStyle(fontSize: 18);
+  final _biggerFont = const TextStyle(fontSize: 25);
   @override
   Widget build(BuildContext context) {
     _suggestions.addAll(context.read<SavedNames>().saved);
