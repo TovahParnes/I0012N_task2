@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task2/providers/savedCardProvider.dart';
-import '../providers/savedNamesProvider.dart';
 
 class SavedPage extends StatelessWidget {
   const SavedPage({Key? key}) : super(key: key);

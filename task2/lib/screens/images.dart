@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task2/providers/savedCardProvider.dart';
@@ -41,7 +40,6 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    //_cards.addAll(context.read<SavedCards>().saved);
     _imageTexts.addAll(context.read<SavedNames>().saved);
     _imageTexts.isEmpty ? _imageTexts.add("") : null;
     return Scaffold(
@@ -63,6 +61,7 @@ class _CardsState extends State<Cards> {
             return Card(
                 child: Stack(fit: StackFit.expand, children: [
               const Material(
+                // Shadow behind card
                 elevation: 20.0,
                 shadowColor: Colors.black,
               ),

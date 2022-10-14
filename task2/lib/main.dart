@@ -3,7 +3,6 @@ import 'package:task2/providers/savedCardProvider.dart';
 import 'screens/names.dart';
 import 'screens/images.dart';
 import 'screens/liked.dart';
-import 'package:english_words/english_words.dart';
 import 'package:provider/provider.dart';
 import 'providers/savedNamesProvider.dart';
 
@@ -54,7 +53,7 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     pages = [
       const NamePage(),
-      ImagePage(),
+      const ImagePage(),
       const SavedPage(),
     ];
   }
@@ -66,6 +65,7 @@ class _MainPageState extends State<MainPage> {
           title: const Text("Art Name Generator"),
         ),
         bottomNavigationBar: NavigationBar(
+          // Bottom navigation bar: https://uxplanet.org/how-to-design-a-better-bottom-navbar-5127c8b8102f
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.list),
@@ -82,20 +82,5 @@ class _MainPageState extends State<MainPage> {
           selectedIndex: currentPage,
         ),
         body: pages[currentPage]);
-  }
-
-  void _settings() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Settings'),
-            ),
-            body: ListView(),
-          );
-        },
-      ),
-    );
   }
 }

@@ -24,7 +24,7 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final List<String> _suggestions = [];
-  final _biggerFont = const TextStyle(fontSize: 28);
+  final _biggerFont = const TextStyle(fontSize: 28); //
   @override
   Widget build(BuildContext context) {
     _suggestions.addAll(context.read<SavedNames>().saved);
@@ -36,6 +36,7 @@ class _RandomWordsState extends State<RandomWords> {
 
           final index = i ~/ 2;
           if (index >= _suggestions.length) {
+            // Generate infinite words
             _suggestions.addAll(generateWordPairs()
                 .take(10)
                 .toList()
