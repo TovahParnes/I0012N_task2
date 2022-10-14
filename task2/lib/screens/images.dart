@@ -48,7 +48,6 @@ class _CardsState extends State<Cards> {
         size: const Size.fromHeight(550.0),
         child: PageView.builder(
           controller: PageController(viewportFraction: 0.8),
-          //itemCount: images.length,
           itemBuilder: (BuildContext context, int index) {
             if (index >= _cards.length) {
               _cards.add([

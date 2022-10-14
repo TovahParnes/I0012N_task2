@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Painting Name Generator"),
+          title: const Text("Art Name Generator"),
         ),
         bottomNavigationBar: NavigationBar(
           destinations: const [
@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.list),
               label: 'Names',
             ),
-            NavigationDestination(icon: Icon(Icons.image), label: 'Images'),
+            NavigationDestination(icon: Icon(Icons.image), label: 'Art'),
             NavigationDestination(icon: Icon(Icons.favorite), label: 'Saved'),
           ],
           onDestinationSelected: (int index) {
